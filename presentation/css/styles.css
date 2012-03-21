@@ -120,15 +120,7 @@ ul li {
 	display: block;
 	font-weight: normal;
 	font-size:24px;
-	text-align:right;
 	color:#666;
-
-	-webkit-transform: rotate(-10deg);
-	-moz-transform:    rotate(-10deg);
-	-ms-transform:     rotate(-10deg);
-	-o-transform:      rotate(-10deg);
-	transform:         rotate(-10deg);
-
 }
 
 small {
@@ -215,6 +207,3 @@ strong {
 .impress-not-supported .fallback-message {
 	display: block;
 }
-
-
-
