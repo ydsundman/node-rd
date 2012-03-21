@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=1024" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<title>Node.js RD</title>
+
+	<meta name="description" content="Node.js RD presentation at Crisp" />
+	<meta name="author" content="Daniel and Yassal Sundman" />
+
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body class="impress-not-supported">
+
+	<div class="fallback-message">
+		<p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+		<p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+	</div>
+
+	<div id="author">
+		<p>Daniel Sundman</p>
+		<p>daniel.sundman@crisp.se</p>
+	</div>
+
+
+	<div id="impress">
+		<div id="node-js" class="step slide" data-y="-4500" data-x="500"
+		data-z="000" data-scale="7" data-rotate-x="0">
+		<h1>Node.js</h1>
+	</div>
+
+	<div class="step" data-x="-500" data-y="-5500" data-scale="2">
+		<p class="title">I/O is Expensive</p>
+		<p class="content">Don't block</p>
+	</div>
+
+	<div class="step" data-x="-500" data-y="-5200"  data-rotate="90">
+		<p class="title">Goal</p>
+		<p class="content">Make it easy to write high-performance Servers</p>
+	</div>
+
+	<div class="step" data-x="0" data-y="-5200">
+		<p class="title">Pasta and Meat Sauce</p>
+	</div>
+
+	<div class="comparisons">
+		<ul class="step" data-x="-300" data-y="-4970">
+			<li>Start Boiling Water</li>
+			<li>Start Frying Ground Beef</li>
+			<li>Put Pasta in Water</li>
+			<li>Finish Meat Sauce</li>
+			<li>Serve Once Pasta is Done</li>
+		</ul>
+		<ul class="step" data-x="300" data-y="-4900">
+			<li>Start Boiling Water</li>
+			<li>Wait for Water to Boil</li>
+			<li>Put Pasta in Water</li>
+			<li>Wait for Pasta to Cook</li>
+			<li>Start Frying Ground Beef</li>
+			<li>Finish Meat Sauce</li>
+			<li>Serve Once Meat Sauce is Done</li>
+		</ul>
+	</div>
+
+	<div class="step" data-x="0" data-y="-4500" data-rotate="90">
+		<p class="title">One OS Thread / TCP Connection</p>
+		<p class="content"><strong>Suboptimal</strong></p>
+		<p class="content">Apache -> nginx, Lighttp</p>
+	</div>
+
+	<div class="step" data-x="-500" data-y="-4500" data-scale="2">
+		<p class="title">Not A Mystery</p>
+	</div>
+
+	<div>
+		<p class="content">
+			<ul>
+				<li class="step" data-x="-500" data-y="-4640" 
+				data-rotate-y="-45">multiplex I/O -> each OS thread</li>
+				<li class="step" data-x="-500" data-y="-4570" 
+				data-rotate-y="-45">epoll, kqueue, event ports</li>
+				<li class="step" data-x="-500" data-y="-4500" 
+				data-rotate-y="-45">non-blocking I/O</li>
+				<li class="step" data-x="-500" data-y="-4430"
+				data-rotate-y="-45">don't share memory (limit)</li>
+				<li class="step" data-x="-500" data-y="-4360" 
+				data-rotate-y="-45">spawn however many threads you need</li>
+				<li class="step" data-x="-500" data-y="-4290" 
+				data-rotate-y="-45">start event loop on each thread</li>
+			</ul>
+		</p>
+	</div>
+
+	<div class="step" data-x="-500" data-y="-4000" data-rotate="-90">
+		<p class="title">Existing Solutions</p>
+	</div>
+
+	<ul>
+		<li class="step" data-x="-610" data-y="-4000" data-rotate="-90" data-rotate-x="-45">
+			<ul>
+				<li>Green Threads</li>
+				<li>Erlang "processes"</li>
+			</ul>
+		</li>
+		<li class="step" data-x="-500" data-y="-4000" data-rotate="-90" data-rotate-x="-45">Actors</li>
+		<li class="step" data-x="-350" data-y="-4000" data-rotate="-90" data-rotate-x="-45">Same Basic Principles
+			<ul>
+				<li>event loop</li>
+				<li>non-blocking I/O</li>
+			</ul>
+		</li>
+	</ul>
+
+	<div class="step" data-x="-500" data-y="-3500" >
+		<p class="title">Problems <span class="subtitle">(basic C + event loop + non-blocking I/O)</span></p>
+	</div>
+
+	<div>
+		<ul>
+			<li class="step" data-x="-500" data-y="-3400">Can't think synchronously</li>
+			<li class="step" data-x="-500" data-y="-3300">It's all or nothing <small>(Cannot mix in blocking libraries)</small></li>
+		</ul>
+	</div>
+
+	<div class="step" data-x="0" data-y="-3500" data-rotate="90">
+		<p class="title">Goal</p>
+		<p class="content">Make it easy to write high-performance Servers</p>
+	</div>
+
+	<div class="step" data-x="500" data-y="-3500" data-scale="2">
+		<p class="title">Easy != C</p>
+		<p class="content">these days</p>
+	</div>
+
+	<div class="step" data-x="500" data-y="-4000">
+		<p class="title">Enter JavaScript</p>
+		<p class="content">a language everybody "knows"</p>
+	</div>
+
+	<div class="step" data-x="1000" data-y="-4000" data-scale="3" data-rotate="90">
+		<p class="title">JavaScript</p>
+	</div>
+
+	<div>
+		<ul>
+			<li class="step" data-x="1100" data-y="-4000" data-rotate="90"
+			data-rotate-x="-45">browser JavaScript is a single threaded, non-blocking interface</li>
+			<li class="step" data-x="1000" data-y="-4000" data-rotate="90"
+			data-rotate-x="-45">no preconceived idea about I/O</li>
+			<li class="step" data-x="940" data-y="-4000" data-rotate="90"
+			data-rotate-x="-45">arms race for performance</li>
+			<li class="step" data-x="840" data-y="-4000"data-rotate="90"
+			data-rotate-x="-45">generation of programmers have grown up learning how to
+			program in terms of 'mouseover' events</li>
+		</ul>
+	</div>
+
+	<div class="step" data-x="1000" data-y="-4500">
+		<p class="title">Node is</p>
+		<p class="content">a command line tool that uses Google's V8 for non-browser work: sockets, files, etc.</p>
+	</div>
+
+	<div class="step" data-x="1000" data-y="-5000" data-scale="3" data-rotate="-90">
+		<p class="title">Node</p>
+	</div>
+
+	<div>
+		<ul>
+			<li class="step" data-x="700" data-y="-5000" data-rotate="-90" data-rotate-x="45">only exposes asynchronous interfaces<small>non-blocking</small></li>
+			<li class="step" data-x="800" data-y="-5000" data-rotate="-90" data-rotate-x="45">only one thread, one call stack <small>like in the browser</small></li>
+			<li class="step" data-x="900" data-y="-5000" data-rotate="-90" data-rotate-x="45">has low-level features <small>half closed TCP connections, TCP throttling, UDP</small></li>
+			<li class="step" data-x="1000" data-y="-5000" data-rotate="-90" data-rotate-x="45">strong HTTP support </li>
+			<li class="step" data-x="1100" data-y="-5000" data-rotate="-90" data-rotate-x="45">purely non-blocking means, decent concurrency basically for free</li>
+			<li class="step" data-x="1200" data-y="-5000" data-rotate="-90" data-rotate-x="45">no mutex locks</li>
+			<li class="step" data-x="1260" data-y="-5000" data-rotate="-90" data-rotate-x="45">one thing at a time, means no thread safety issues</li>
+		</ul>
+	</div>
+
+	<div class="step" data-x="1000" data-y="-5500">
+		<p class="title">But, if Node is a Single Thread...</p>
+	</div>
+
+	<div>
+		<ul>
+			<li class="step" data-x="1000" data-y="-5400">no automatic scaling across multiple cores</li>
+			<li class="step" data-x="1000" data-y="-5300">no automatic scaling across data centers</li>
+		</ul>
+	</div>
+
+	<div class="step" data-x="1500" data-y="-4500" data-rotate="90" data-scale="2" >
+		<p class="title">Solution</p>
+	</div>
+
+	<div>
+		<ul>
+			<li class="step" data-x="1650" data-y="-4500" data-rotate="90" data-rotate-x="45">to scale over multi-core, multi-machine: start more node instances</li>
+			<li class="step" data-x="1500" data-y="-4500" data-rotate="90" data-rotate-x="45">different problems require different solutions. Node provides the primitives.</li>
+			<li class="step" data-x="1350" data-y="-4500" data-rotate="90" data-rotate-x="45">Node will probably never be used for numerical analysis</li>
+		</ul>
+	</div>
+
+	<div class="step" data-x="1500" data-y="-4000" >
+		<p class="title">When Would I Use Node?</p>
+	</div>
+
+	<div class="step" data-x="1500" data-y="-3850" >
+		<p class="title">Modern Web Applications!</p>
+		<p class="content">(or any network application for that matter)</p>
+	</div>
+
+	<div>
+		<ul>
+			<li class="step" data-x="1500" data-y="-3700">Same language for both server and client</li>
+			<li class="step" data-x="1500" data-y="-3600">No mismatch in communication (JSON)</li>
+		</ul>
+	</div>
+
+	<div class="step" data-x="1250" data-y="-3500" data-rotate="-90" data-scale="2">
+		<p class="title">Conclusion</p>
+		<p class="content">Node is:</p>
+	</div>
+
+	<div>
+		<ul>
+			<li class="step" data-x="1500" data-y="-3500" data-rotate="-90">Like JavaScript in the Browser...</li>
+			<li class="step" data-x="1600" data-y="-3500" data-rotate="-90">...on the Server...</li>
+			<li class="step" data-x="1700" data-y="-3500" data-rotate="-90">...minus the DOM...</li>
+			<li class="step" data-x="1800" data-y="-3500" data-rotate="-90">...plus a low-level networking API!</li>
+		</ul>
+	</div>
+
+	<div id="final" class="step slide" data-y="-4350" data-x="500"
+	data-z="-1000" data-scale="5" data-rotate-x="0">
+	</div>
+
+	<script src="js/impress.js"></script>
+	<script>impress();</script>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>socket.io Clock</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Daniel Sundman">
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect();
+		socket.on('tick', function(data){
+			document.getElementById('clock').innerHTML = data;
+		});
+	</script>
+</head>
+<body>
+	Time: <span id="clock">???</span>
+</body>
+</html>

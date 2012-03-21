@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>socket.io Chat</title>
+	<meta name="author" content="Daniel Sundman">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script>
+
+		$(document).ready(function() {
+			var socket = io.connect();
+			socket.on('msg', function(d) {
+				$("#messages").html($("#messages").html() + d);
+			});
+			$("#msg-form").hide();
+			$("#name-form").submit(function(){
+				$("#name-form").hide();
+				$("#msg-form").show();
+				socket.emit('set-name', $("#name-form").val());
+				return false;
+			});
+			$("#msg-form").submit(function(){
+				socket.emit('msg', $("#msg-form").val());
+				return false;
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<form id="name-form">
+		<label for="name">name</label>
+		<input id="name" name="name" type="text"></input>
+	</form>
+	<form id="msg-form">
+		<label for="msg">msg</label>
+		<input id="msg" name="msg" type="text"></input>
+	</form>
+	<div id="messages"></div>
+</body>
+</html>
